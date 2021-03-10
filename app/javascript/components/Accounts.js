@@ -1,9 +1,11 @@
 import React from 'react';
+import Navbar from './Navbar';
 
 const Accounts = ({ accounts, user }) => {
   const { first_name } = user
   return (
     <>
+      <Navbar />
       <h1>Welcome {first_name}</h1>
       <hr />
       <a href="/accounts/new">New Account</a>
@@ -12,7 +14,7 @@ const Accounts = ({ accounts, user }) => {
       <ul>
         { accounts.map( (a) => (
           <li key={a.id}>
-            {a.name} - {a.balance}
+            {a.name} - ${a.balance}
           </li>
         ))}
       </ul>

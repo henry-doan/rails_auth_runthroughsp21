@@ -19,9 +19,11 @@ class AccountsController < ApplicationController
   def create
     @account = current_user.accounts.new(account_params)
     if @account.save
+      flash[:success] = "Account Created"
       redirect_to accounts_path
     else
-      render component: "AccountNew", props: { account: @account, user: current_user, errors: @account.errors.messages[:balance][0] }
+      flash[:error] = "Error #{@account.errors.full_messages.join("\n")}"
+      render component: "AccountNew", props: { account: @account, user: current_user }
     end
   end
 
